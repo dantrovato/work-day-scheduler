@@ -8,5 +8,7 @@ function placeCurrentDateUnderTitle() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const $container = $("div.container");
+
   placeCurrentDateUnderTitle();
 });
