@@ -1,12 +1,10 @@
 function getCurrentDay() {
-  return String(moment().toDate()).split(" ").slice(0, 4).join(" ");
+  return String(moment().toDate()).split(" ").slice(0, 5).join(" ");
 }
 
 function placeCurrentDateUnderTitle() {
-  // const $titleDate = $("#currentDay");
-  // $titleDate.text(getCurrentDay());
-  // temporary function call
-  checkTime();
+  const $titleDate = $("#currentDay");
+  $titleDate.text(getCurrentDay());
 }
 
 // Checks the time and sets the background color to the text area according to past current or
@@ -32,18 +30,9 @@ function setCorrectBackgroundColor() {
   });
 }
 
-// Temporary function. For development only. Refreshes the date and time every second
-function checkTime() {
-  const $titleDate = $("#currentDay");
-
-  setInterval(() => {
-    $titleDate.text(String(moment().toDate()).split(" ").slice(0, 5).join(" "));
-  }, 1000);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  // commented out as check time may be replacing this; placeCurrentDateUnderTitle only prints out date
-  // placeCurrentDateUnderTitle();
-  checkTime();
-  setCorrectBackgroundColor();
+  setInterval(() => {
+    placeCurrentDateUnderTitle();
+    setCorrectBackgroundColor();
+  }, 1000);
 });
