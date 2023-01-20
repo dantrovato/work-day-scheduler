@@ -21,7 +21,6 @@ function setCorrectBackgroundColor() {
       textarea.classList.remove("future");
       textarea.classList.remove("present");
       textarea.classList.add("past");
-      // debugger;
     } else if (moment().hour() === currentHour) {
       textarea.classList.remove("future");
       textarea.classList.remove("past");
@@ -30,9 +29,39 @@ function setCorrectBackgroundColor() {
   });
 }
 
+// Loops over all textareas. At each iteration it looks into local storage to see if there is any text to print in
+// the timeslot
+function loadTextFromLocalStorage() {
+  // get the data-hour's value as key and the text of textarea as value
+  document.querySelectorAll("textarea").forEach((textarea) => {
+    const hourSlot = textarea.getAttribute("data-hour"); // type: string
+
+    if (localStorage.getItem(`${hourSlot}`)) {
+      textarea.textContent = localStorage.getItem(`${hourSlot}`);
+    }
+  });
+}
+
+// localStorage.getItem(`${hourSlot}`, textarea.textContent);
 document.addEventListener("DOMContentLoaded", () => {
+  // refresh time, date and background colors of time slots every second
   setInterval(() => {
     placeCurrentDateUnderTitle();
     setCorrectBackgroundColor();
   }, 1000);
+
+  // loop over each text area and insert text from local storage
+  loadTextFromLocalStorage();
+
+  // add event listener to button
+  // - this takes text of it's textarea and stores in local storage
+  $(".row").on("click", (event) => {
+    const hourSlot = $(event.target)
+      .closest("div")
+      .find("textarea")
+      .attr("data-hour"); // type: string
+    const $task = $(event.target).prev().val();
+
+    localStorage.setItem(`${hourSlot}`, `${$task}`);
+  });
 });

@@ -11,9 +11,9 @@ textarea {
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
-  /* height: 3rem; */
 }
 
+/* Header, obvs  */
 .jumbotron {
   text-align: center;
   background-color: transparent;
@@ -22,27 +22,25 @@ textarea {
   border-bottom: 10px solid black;
 }
 
+/* Not sure where this is supposed to go  */
 .description {
   white-space: pre-wrap;
 }
 
+/* Applied to the div container for each row  */
 .time-block {
   text-align: center;
   border-radius: 15px;
 }
 
-/* Container for entire row  */
+/* same as above (could probably move the above logic into this rule?  */
 .row {
   white-space: pre-wrap;
   height: 80px;
   border-top: 1px solid white;
-
-  /* my rules */
-  /* display: flex;
-  align-items: flex-start; */
 }
 
-/* 9AM */
+/* 9AM, 10AM etc bit to the left of the time slot */
 .hour {
   background-color: #ffffff;
   color: #000000;
@@ -52,17 +50,20 @@ textarea {
 
 .past {
   background-color: #d3d3d3;
-  color: white;
+  /* I commented out these as the demo app doesn't show text as white  */
+  /* color: white; */
 }
 
 .present {
   background-color: #ff6961;
-  color: white;
+  /* I commented out these as the demo app doesn't show text as white  */
+  /* color: white; */
 }
 
 .future {
   background-color: #77dd77;
-  color: white;
+  /* I commented out these as the demo app doesn't show text as white  */
+  /* color: white; */
 }
 
 .saveBtn {
