@@ -36,13 +36,15 @@ function loadTextFromLocalStorage() {
   document.querySelectorAll("textarea").forEach((textarea) => {
     const hourSlot = textarea.getAttribute("data-hour"); // type: string
 
-    if (localStorage.getItem(`${hourSlot}`)) {
+    if (
+      localStorage.getItem(`${hourSlot}`) &&
+      localStorage.getItem(`${hourSlot}`) !== "undefined"
+    ) {
       textarea.textContent = localStorage.getItem(`${hourSlot}`);
     }
   });
 }
 
-// localStorage.getItem(`${hourSlot}`, textarea.textContent);
 document.addEventListener("DOMContentLoaded", () => {
   // refresh time, date and background colors of time slots every second
   setInterval(() => {
