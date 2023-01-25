@@ -32,6 +32,13 @@ function setCorrectBackgroundColor() {
 // Loops over all textareas. At each iteration it looks into local storage to see if there is any text to print in
 // the timeslot
 function loadTextFromLocalStorage() {
+  // This takes any value stored as the string "undefined" and stores an empty string there instead
+  Object.entries(localStorage).forEach((subArray) => {
+    if (subArray[1] === "undefined") {
+      subArray[1] = "";
+    }
+  });
+  console.log("Local Storage: ", localStorage);
   // get the data-hour's value as key and the text of textarea as value
   document.querySelectorAll("textarea").forEach((textarea) => {
     const hourSlot = textarea.getAttribute("data-hour"); // type: string
