@@ -63,14 +63,25 @@ document.addEventListener("DOMContentLoaded", () => {
   loadTextFromLocalStorage();
 
   // add event listener to button
-  // - this takes text of it's textarea and stores in local storage
-  $(".row").on("click", (event) => {
-    const hourSlot = $(event.target)
+  // - this takes text of its textarea and stores in local storage
+  $(".row").on("click", "button", (event) => {
+    // Grab the data-hour attribute of the clicked time slot: ex 9. type: string
+    const $hourSlot = $(event.target)
       .closest("div")
       .find("textarea")
       .attr("data-hour"); // type: string
-    const $task = $(event.target).prev().val();
+    let $task;
 
-    localStorage.setItem(`${hourSlot}`, `${$task}`);
+    // The first if checks the user has clicked on the blue part of the button as opposed
+    // to the icon nested inside it.
+    if ($(event.target)[0].tagName === "BUTTON") {
+      $task = $(event.target).prev().val();
+
+      // The second condition checks the user has clicked on the icon inside the button
+    } else if ($(event.target)[0].tagName === "I") {
+      $task = $(event.target).parent().prev().val();
+    }
+
+    localStorage.setItem(`${$hourSlot}`, `${$task}`);
   });
 });
